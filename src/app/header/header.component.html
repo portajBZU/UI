@@ -1,0 +1,37 @@
+<div >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light " [ngClass]="{'header-class': headerClass}" style ="box-shadow: 0 1px 10px 0 grey">
+        <a class="navbar-brand" routerLink="/">
+            <img src="../../assets/logo.png" style="width: 3rem;" alt="Logo"> 
+          </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li routerLinkActive="active" class="nav-item">
+              <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li routerLinkActive="active" class="nav-item">
+              <a class="nav-link" routerLink="/partners">Partners</a>
+            </li>
+            <li routerLinkActive="active" class="nav-item ">
+              <a class="nav-link" routerLink='/supervisors'>Supervisors</a>
+            </li>
+            <li routerLinkActive="active" class="nav-item">
+              <a class="nav-link" routerLink='/templates'>Templates</a>
+            </li>
+            <li routerLinkActive="active" class="nav-item">
+                <a class="nav-link" routerLink='/upload'>Upload</a>
+              </li>
+            <li routerLinkActive="active" class="nav-item">
+                <a class="nav-link" routerLink='/archive'>Archive</a>
+              </li>
+              <li routerLinkActive="active" class="nav-item">
+                <a class="nav-link" routerLink='/announcements'>Announcements</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    
+</div>

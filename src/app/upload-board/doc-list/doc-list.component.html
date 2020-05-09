@@ -1,0 +1,8 @@
+<table class="table table-hover card side-shadow" style="background-color: #f7fcfa; width: fit-content;">
+    <tbody style="width:max-content;">
+      <tr *ngFor='let doc of docs' [ngClass]="(doc.done != 2)?'bg-color':'nothing'">
+        <td>{{doc.name}}</td>
+        <td style="padding-left: 3rem;">  <fa name="file"></fa></td>
+        </tr>
+    </tbody>
+  </table>

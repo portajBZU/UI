@@ -1,0 +1,47 @@
+<div class="card pl-5 pr-5" >
+  <form class="">
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Title">
+    </div>
+    <div class="row">
+        <div class="col">
+
+            <div class="form-group" style="width: 10rem;">
+                <select class="form-control">
+                    <option>Coordinator</option>
+                    <option>Supervisor</option>
+                  </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker3'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker3').datetimepicker({
+                                format: 'LT'
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Details</label>
+      <textarea class="form-control" id="details" rows="7"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+</div>

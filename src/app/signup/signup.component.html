@@ -1,0 +1,69 @@
+<div class="row justify-content-start mr-0 ml-0">
+    <div class="col-1 col-xs-3">
+  <img src="../../assets/logo.png" style="width: 5rem;" alt="Logo">
+    </div>
+    <div class="col-2 col-xs-5 title" >
+      <h3>Portaj</h3>
+    </div>
+  </div>
+  <div class="row m-auto justify-content-center pt-3 mt-2">
+
+    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-10 display-slideshow  pt-5 pl-4">
+        <app-image-slide-show></app-image-slide-show>
+      </div>
+    <div class="col form-query">
+      <section class="form-simple mt-4">
+        <mdb-card>
+          <div class="header pt-3 grey lighten-2">
+
+            <div class="row d-flex justify-content-start">
+              <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5">Sign Up</h3>
+            </div>
+          </div>
+          <mdb-card-body class="mx-4">
+            <form [formGroup]="simpleForm" (ngSubmit)="onSignin()" >
+
+              <div class="md-form">
+                <label for="idStudent">ID Number</label>
+                <input type="text" id="idStudent" class="form-control" formControlName="idStudent" mdbInput>
+              </div>
+
+              <div class="md-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" formControlName="name" mdbInput>
+              </div>
+
+              <div class="md-form">
+                <label for="name">Email</label>
+                <input type="email" id="bd" class="form-control" formControlName="email" mdbInput>
+              </div>
+
+              <div class="md-form pb-3">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" formControlName="password" mdbInput>
+              </div>
+
+              <div class="text-center mb-4">
+                <button type="submit" mdbBtn style="background-color: #54816a; color: honeydew;" block="true"
+                  class="z-depth-2" routerLink='/' (click)='onSignin()'>Sign Up</button>
+              </div>
+            </form>
+
+
+            <p class="font-small grey-text d-flex justify-content-center">Have an account?
+              <button  type="submit" routerLink='/' ></button>
+
+            </p>
+
+          </mdb-card-body>
+
+        </mdb-card>
+        <!--/Form with header-->
+
+      </section>
+
+
+
+
+
+    </div>

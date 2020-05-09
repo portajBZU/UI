@@ -1,0 +1,24 @@
+<div class="card col-11 ml-auto mr-auto" style="top: 15rem; width: fit-content;" >
+    <div class="mr-auto ml-auto">
+    <div style="padding-top: 3rem!important;" class="row p-4 ml-0 mr-0">
+        <div class="col-2">
+            <h5 class="mt-3">
+            Your Progress:
+        </h5>
+    </div>
+    <div class="mt-2" style="max-width: 5.5rem;">
+        <img src="../../assets/images/start.png" style="width: 3rem; height: 3rem;" alt="">
+    </div>
+    <div class="pr-0 pl-0" style="max-width: 6.5rem;" *ngFor=" let doc of docs">
+        <img *ngIf="doc.done == 0" src="../../assets/images/circles.png" alt="">
+        <img *ngIf="doc.done == 1" src="../../assets/images/circle-accepted.png" alt="">
+        <img *ngIf="doc.done == 2" src="../../assets/images/in-progress.png" alt="">
+        <div style="margin-left: 1.6rem; margin-top: 1rem;">
+            <p class="text-center mr-auto ml-auto mb-0"> {{doc.name}}</p>
+            <p class="text-center mr-auto ml-auto"> {{doc.date}}</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+

@@ -1,0 +1,56 @@
+<div class="border-table pr-3 pl-3 center-margin border rounded position-absolute">
+
+    <div class="row border-bottom mr-0 ml-0">
+        <div class="col text-left p-3">Name</div>
+        <div class="col padding-details text-right p-3" >Details</div>
+    </div>
+    <div class="row hover" *ngFor="let student of studentsList;">
+        <div class="col text-left p-3 border-bottom">{{student.name}}</div>
+        <div class="col text-right p-3 border-bottom color-grey" >{{student.groupDetails}}</div> 
+        <div class="edit"><fa name="pencil" id="{{student.name}}" (click)="edit($event)"></fa>
+        </div>
+    </div>
+<div class="row mr-0 ml-0 flex-row-reverse border-0">
+    <span class="shadow button5" style="margin-right: auto; margin-left: auto;" (click)="addForm()">
+        <fa style="font-size: 1.5rem;" name="plus" ></fa>
+    </span>
+</div>
+</div>
+<div class="display-none" id="popup">
+<div style="width: 100%; height: 37rem; z-index: 2; background-color: gainsboro; opacity: 0.8;">
+</div>
+<div class="col-4 card position-absolute" style="z-index: 3; background-color:ghostwhite; top: 30%; left: 38%;" id="form-f">
+    <form class="m-3" [formGroup]="addStudentForm" (ngSubmit)="onAdd()">
+        <div class="form-group">
+          <label for="nameS">Student Name:</label>
+          <input type="text" class="form-control" id="nameInput" formControlName="studentN" >
+        </div>
+        <div class="form-group">
+          <label for="studentID">Student ID</label>
+          <input type="text" class="form-control" id="idInput" formControlName="studentID" placeholder="Student Id">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio"  id="noGroupOption" formControlName="details" value="no-group" checked >
+            <label class="form-check-label" for="noGroupOption">
+              No Group
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio"  id="group2Option" formControlName="details" value="group-2">
+            <label class="form-check-label" for="group2Option">
+              Group Of 2
+            </label>
+          </div>
+          <div class="row mt-3 mb-1">
+              <div class="col">
+            <button type="submit" class="font-size-button btn btn-info" >Add Student</button>
+        </div>
+        <div class="col">
+            <span class="font-size-button btn btn-danger" (click)='cancel()'>Cancel</span>
+        </div>
+          </div>
+      </form>
+
+</div>
+</div>
+

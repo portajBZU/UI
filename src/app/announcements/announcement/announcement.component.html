@@ -1,0 +1,14 @@
+
+ <div class="card" style="height: 20rem;" id="card">
+        <div class="card-body">
+            <div style="height: 5rem;">
+            <h5 class="card-title">{{modifiedTitle}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{author}}</h6>
+        </div>
+            <p class="card-text">{{modifiedDetails }}</p>
+            <p (click)="openDetails()" style="cursor: pointer; color: skyblue;">Read more</p>
+        </div>
+      <div class="card-footer">
+        <small class="text-muted">{{date}}</small>
+      </div>
+    </div>

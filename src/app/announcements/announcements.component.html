@@ -1,0 +1,11 @@
+<router-outlet></router-outlet>
+<div class="row ml-0 mr-0">
+<span class="shadow button5" style="margin-right: auto; margin-left: auto;" (click)="openForm()">
+    <fa style="font-size: 1.5rem;" name="plus" ></fa>
+</span>
+</div>
+<div class="card-deck mr-0 ml-0 row row-cols-1 row-cols-md-3 pt-5 justify-content-around">
+    <div class="col mb-4" *ngFor="let ann of announcements" >
+<app-announcement [title]='ann.title' [author]='ann.author' [date]='ann.date' [details]='ann.details'></app-announcement>
+</div>
+</div>

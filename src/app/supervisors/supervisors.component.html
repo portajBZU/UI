@@ -1,0 +1,76 @@
+
+<div class="border-table pr-3 pl-3 center-margin border rounded position-absolute">
+    <div class="row border-bottom mr-0 ml-0">
+        <div class="col text-left p-3 mr-0 ml-0">Name</div>
+        <div class="col padding-details text-right p-3">Details</div>
+    </div>
+    <div class="row" *ngFor="let supervisor of supervisorList;">
+        <div class="col-3 text-left p-3 border-bottom">{{supervisor.supervisorFirstName}} {{supervisor.supervisorLastName}}</div>
+
+        <div class="col text-right p-3 border-bottom"
+        [ngClass]="(supervisor.detail=='Available')?'available':'not-available'" >
+        {{supervisor.registeredGroups}}/{{supervisor.numberOfGroups}} <span style="padding-left: 1.7rem;">{{supervisor.detail}}</span>
+            <hr>
+        <div class="row hover" *ngFor="let idea of supervisor.ideaList" id="{{idea.ideadId}}" (click)="openDetails($event)">
+            <div class="col p-2 text-left color-grey" >{{idea.ideaTitle}}</div>
+            <div class="col p-2 text-right" [ngClass]="(idea.ideaStatus=='Available')?'available':'not-available'" >{{idea.ideaStatus}}</div>
+        </div>
+    </div>
+    </div>
+    <div class="row mr-0 ml-0 flex-row-reverse border-0">
+        <span class="shadow button5" style="margin-right: auto; margin-left: auto;" (click)="addForm()">
+            <fa style="font-size: 1.5rem;" name="plus"></fa>
+        </span>
+    </div>
+</div>
+<div class="display-none" id="details-pop">
+    <div class="popup-css"></div>
+<div class="details-popup position-absolute card">
+    <div class="row flex-row-reverse"><fa class="col-1 icon-style"  name='times' (click)="exit()"></fa></div>
+    <div id="detailes-inner"></div>
+</div>
+</div>
+<div class="display-none " id="popup">
+    <div class="popup-css">
+    </div>
+    <div class="col-4 popup card position-absolute"  id="form-f">
+        <form class="m-3" [formGroup]="addIdeaForm" (ngSubmit)="onAdd()">
+            <div class="form-row form-group">
+                <label class="font-size-button">First Name:</label>
+              <input type="text" class="form-control col-md-10 font-size-button" id="nameInput" formControlName="supervisorN" placeholder="First Name">
+            </div>
+          <div class="form-row form-group"> <br>
+            <label class="font-size-button">Last Name:</label>
+            <input type="text" class="form-control col-md-10 font-size-button" id="lastName" formControlName="supervisorLast" placeholder="Last Name">
+          </div>
+          <div class="form-row form-group">
+            <label class="font-size-button">Supervisor ID:</label>
+            <input type="text" class="form-control col-md-10 font-size-button" id="idS" formControlName="supervisorId" placeholder="Student ID">
+          </div>
+            <div class="form-group">
+                <label class="font-size-button">Group Capacity:</label>
+                <input type="number" min="1" max="3" class="form-control font-size-button" style="width: 3.5rem;" formControlName="groupCapacity" placeholder="Group Capacity">
+            </div>
+          <!--
+            <label class="font-size-button">Ideas:</label>
+            <div class=" form-row form-group">
+                    <input [disabled]="booleanIdea=== 'true' " type="text" class="form-control col-md-10 font-size-button" id="idea" formControlName="ideas" placeholder="Add Idea">
+                        <fa name="plus-square" class="col-md-2 m-auto pointer"  style="font-size: 1.4rem;" (click)="addIdea()" ></fa>
+            </div>
+            <div id="ideaList">
+
+            </div>
+            -->
+              <div class="row mt-3 mb-1">
+                  <div class="col">
+                <button type="submit" class="font-size-button btn btn-info">Add</button>
+            </div>
+            <div class="col">
+                <button type="cancel" class="font-size-button btn btn-danger" (click)='cancel()'>Cancel</button>
+            </div>
+              </div>
+          </form>
+
+    </div>
+    </div>
+

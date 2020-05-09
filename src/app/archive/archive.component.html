@@ -1,0 +1,38 @@
+<div class="ml-auto mr-auto mt-5" style="width: fit-content;">
+<app-search></app-search>
+</div>
+  <div class="row ml-0 mr-0">
+    <div class="col-2 pr-0" style="margin-top: 7rem;">
+      <table class="table table-hover card side-shadow" style="background-color: #f7fcfa;">
+        <tbody>
+          <tr *ngFor='let category of categories' (click)="filterCategories(category.id)">
+            <th scope="row">{{category.name}} ({{category.count}})</th>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="row justify-content-around mt-5" style="margin-right: auto; margin-left:auto; ">
+
+        <div class="col " style="margin-top: 2rem;" *ngFor="let report of selectedReports">
+          <div class="card card-shadow " style="width: 12rem;">
+            <div class="m-2" style="background-color: grey; opacity: 0.8;">
+              <img class="card-img-top" style="padding: 0.4rem 0.2rem 0 0.2rem;"
+                src="../../../assets/templates cover.JPG" alt="templates cover">
+            </div>
+            <div class="m-2 overlay">
+              <p class="text-center"> {{report.areaKey}} </p>
+              <p class="text-center">Year {{report.year}} </p>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <h5 class="text-center card-title" style="font-size: medium;">{{report.name}}</h5>
+              <div class="mb-2" style="margin-left: 18%;">
+                <a href="" class="btn"
+                  style="background-color:#54816a; color: white; padding: 0.2rem 2rem;font-size: small;">Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
