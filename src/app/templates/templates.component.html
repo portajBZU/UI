@@ -15,3 +15,14 @@
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+<div class="row justify-content-between mt-5" style="margin-right: auto; margin-left:auto; width:70%;">
+  <span data-animation="true" data-toggle="tooltip" data-placement="left"
+        title="Upload Template" class="shadow button5" style="margin-right: auto; margin-left: auto;" (click)="upload($event)">
+            <fa style="font-size: 1.5rem;" name="plus" ></fa>
+        </span>
+</div>

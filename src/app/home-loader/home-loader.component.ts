@@ -13,7 +13,7 @@ public show: boolean
 
       if (event instanceof NavigationEnd) {
 console.log(event.url)
-        if ('/' == event.url) {
+        if ('/' == event.url || '/car' == event.url) {
           document.getElementById('header').setAttribute('style', 'display: none');
         } else {
           document.getElementById('header').setAttribute('style', 'display: block');

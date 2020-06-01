@@ -1,5 +1,7 @@
 export interface Archives {
-    nameOFreport: String,
-    yearOfthisArchive:Date ,
-    supervisodBy:String
+  _id: String,
+  currentDate: Date,
+  archiveTitle:String,
+  archiveType:String,
+  supervisodBy:String
 }

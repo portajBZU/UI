@@ -37,6 +37,7 @@ import { DocListComponent } from './upload-board/doc-list/doc-list.component';
 import { UploadComponent } from './upload-board/upload/upload.component';
 import { SearchComponent } from './archive/search/search.component';
 import { StudentsService } from '../services/students.service';
+import { CarComponent } from './car/car.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { StudentsService } from '../services/students.service';
     UploadBoardComponent,
     DocListComponent,
     UploadComponent,
-    SearchComponent
+    SearchComponent,
+    CarComponent
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -73,7 +75,8 @@ import { StudentsService } from '../services/students.service';
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
-    MatDialogModule, BrowserAnimationsModule
+    MatDialogModule, BrowserAnimationsModule,
+
   ],
   providers: [MDBModalService,
     LoginService,

@@ -59,7 +59,7 @@ public ideasList: IdeaDetails[] =[{ideadId: 0, ideaTitle: '', ideaStatus: 'Avail
   getSupervisors(){
     return this.supervisorsService.getSupervisors().subscribe(data => {
       this.supervisorList = data;
-    });;
+    });
   }
 
 

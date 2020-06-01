@@ -15,4 +15,7 @@ export class DocListService {
       console.log(data);
     })
   }
+  getDocList() {
+    return this.http.get<DocList>('http://localhost:3500/list');
+  }
 }

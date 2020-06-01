@@ -13,6 +13,7 @@ import { AnnouncementDetailsComponent } from './announcements/announcement-detai
 import { UploadBoardComponent } from './upload-board/upload-board.component';
 import { HomeLoaderComponent } from './home-loader/home-loader.component';
 import { AnnouncementFormComponent } from './announcements/announcement-form/announcement-form.component';
+import {CarComponent} from "./car/car.component";
 
 
 const routes: Routes = [

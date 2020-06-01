@@ -6,11 +6,24 @@
           <h5 class="card-title">
             {{doc.name}}</h5>
             <hr>
+          <div *ngIf="!successful">
           <p class="card-text">Upload Before {{doc.date}}</p>
-          <a class="btn" style="background-color: #54816a; color: white;">Upload <fa name="upload"></fa></a>
+          <form [formGroup]="uploadFile">
+            <div class="row mr-auto ml-auto w-50 pt-4 pb-4">
+            <input id="hide" type="file" formControlName="file"  (change)="handle($event)">
+            </div>
+
+            <a (click)="upload()" class="btn" style="background-color: #54816a;  color: white;">Upload <fa name="upload"></fa></a>
+          </form>
+          </div>
         </div>
+      <div *ngIf="successful">
+        <h4>Successfully Uploaded!</h4> <fa style="font-size: 3rem; color: #54816a; " name="check-circle" ></fa>
+      </div>
         <div class="card-footer text-muted">
           {{daysLeft}} Days Left
         </div>
+
       </div>
 </div>
+
