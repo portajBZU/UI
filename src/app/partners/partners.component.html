@@ -4,11 +4,12 @@
         <div class="col text-left p-3">Name</div>
         <div class="col padding-details text-right p-3" >Details</div>
     </div>
-    <div class="row hover" *ngFor="let student of studentsList;">
-        <div class="col text-left p-3 border-bottom">{{student.name}}</div>
-        <div class="col text-right p-3 border-bottom color-grey" >{{student.groupDetails}}</div> 
-        <div class="edit"><fa name="pencil" id="{{student.name}}" (click)="edit($event)"></fa>
-        </div>
+    <div  *ngFor="let student of studentsList;">
+      <div class="row hover" *ngIf ="student.needPartners">
+        <div class="col text-left p-3 border-bottom">{{student.name}}<span *ngIf="student.partnerId != 0"> & {{student.partner}}</span></div>
+        <div class="col text-right p-3 border-bottom color-grey" >{{student.details}}</div>
+        <div class="edit"><fa name="pencil" id="{{student.name}}" (click)="edit($event)"></fa></div>
+    </div>
     </div>
 <div class="row mr-0 ml-0 flex-row-reverse border-0">
     <span class="shadow button5" style="margin-right: auto; margin-left: auto;" (click)="addForm()">
@@ -22,11 +23,11 @@
 <div class="col-4 card position-absolute" style="z-index: 3; background-color:ghostwhite; top: 30%; left: 38%;" id="form-f">
     <form class="m-3" [formGroup]="addStudentForm" (ngSubmit)="onAdd()">
         <div class="form-group">
-          <label for="nameS">Student Name:</label>
+          <label for="nameInput">Student Name:</label>
           <input type="text" class="form-control" id="nameInput" formControlName="studentN" >
         </div>
         <div class="form-group">
-          <label for="studentID">Student ID</label>
+          <label for="idInput">Student ID</label>
           <input type="text" class="form-control" id="idInput" formControlName="studentID" placeholder="Student Id">
         </div>
         <div class="form-check">

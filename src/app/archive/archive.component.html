@@ -47,20 +47,34 @@
       <div class="row justify-content-around mt-5" style="margin-right: auto; margin-left:auto; ">
 
         <div class="col " style="margin-top: 2rem;" *ngFor="let report of report">
-          <div class="card card-shadow " style="width: 12rem;">
+      <!--    <div class="card card-shadow " style="width: 12rem;">
             <div class="m-2" style="background-color: grey; opacity: 0.8;">
-              <img class="card-img-top" style="padding: 0.4rem 0.2rem 0 0.2rem;"
+              <img class="card-img" style="padding: 0.4rem 0.2rem 0 0.2rem;"
                 src="../../../assets/templates cover.JPG" alt="templates cover">
             </div>
-         <!--   <div class="m-2 ">
-              <p class="text-center"> {{report.archiveType}} </p>
-              <p class="text-center">Year {{report.currentDate}} </p>
-            </div> -->
             <div class="card-body" style="padding: 0;">
               <h5 class="text-center card-title" style="font-size: medium;">{{report.archiveTitle}}</h5>
+              <p class="text-center card-title" style="font-size: medium;">{{report.archiveType}}</p>
               <div class="mb-2" style="margin-left: 18%;">
                 <a (click)="download(report._id)" class="btn"
                   style="background-color:#54816a; color: white; padding: 0.2rem 2rem;font-size: small;">Download</a>
+              </div>
+            </div>
+          </div> -->
+          <div class="card mb-3 card-shadow " style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img class="card-img" src="../../../assets/templates cover.JPG" alt="templates cover">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="text-center card-title" style="font-size: medium;">{{report.archiveTitle}}</h5>
+                  <p class="text-center card-title" style="font-size: medium;">{{report.archiveType}}</p>
+                  <div class="mb-2" style="margin-left: 18%;">
+                    <a (click)="download(report._id)" class="btn"
+                       style="background-color:#54816a; color: white; padding: 0.2rem 2rem;font-size: small;">Download</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

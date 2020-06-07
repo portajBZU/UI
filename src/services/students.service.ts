@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Students} from '../interface/Students';
+import {SignUp} from "../interface/SignUp";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,6 @@ export class StudentsService {
     });
   }
   getStudents() {
-    return this.http.get<Students>('http://localhost:3500/students');
+    return this.http.get<SignUp>('http://localhost:3500/signup');
   }
 }

@@ -1,16 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {SignUp} from "../../interface/SignUp";
+import {LogIn} from "../log-in/log-in.component";
+import {LoginService} from "../services/login.service";
 
-export interface SignUp {
-  password: string;
-  name: string;
-  idStudent: number;
-}
-export interface LogIn {
-  password: string;
-  studentID: number;
-}
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -18,11 +13,12 @@ export interface LogIn {
 })
 export class SignupComponent implements OnInit {
 
+  signUpFailed: String;
   simpleForm: FormGroup;
-  data: SignUp = {name: '', password: '', idStudent: 0};
-  loginUser: LogIn = {studentID: 0, password:  ''};
-  constructor(public fb: FormBuilder, public http: HttpClient) {
+  errors;
+  data: SignUp = {name: '', password: '', idStudent: 0, email: '', needPartners: false, details: '', partner: '', partnerId: 0, groupId: null};
 
+  constructor(public fb: FormBuilder, public http: HttpClient, public signupService: LoginService) {
   }
 
   ngOnInit() {
@@ -30,28 +26,55 @@ export class SignupComponent implements OnInit {
       idStudent: ['', [Validators.required]],
       name: ['', [Validators.required]],
       email: ['', Validators.required],
+      group: ['', Validators.required],
       password: ['', Validators.required],
+      details: ['', Validators.required],
+      partner: ['', Validators.required],
+      partnerId: ['', Validators.required]
     });
     console.log(this.simpleForm.value);
   }
 
   onSignin() {
-    this.data.name =  this.simpleForm.value.name;
-    this.data.password =  this.simpleForm.value.password;
-    this.data.idStudent =  this.simpleForm.value.idStudent;
+    this.data.name = this.simpleForm.value.name;
+    this.data.password = this.simpleForm.value.password;
+    this.data.idStudent = this.simpleForm.value.idStudent;
+    this.data.email = this.simpleForm.value.email;
+    if (this.simpleForm.value.group == 'No') {
+      this.data.needPartners = false;
+      this.data.details = 'none';
+    } else {
+      this.data.needPartners = true;
+      if (this.simpleForm.value.details == 'alone') {
+        this.data.details = 'No Group';
+      } else if (this.simpleForm.value.details == 'group-2') {
+        this.data.details = 'Group of 2'
+        this.data.partner = this.simpleForm.value.partner;
+        this.data.partnerId = this.simpleForm.value.partnerId;
+      }
+    }
     console.log(this.data);
-    this.postData(this.data);
+    let error = '';
+    this.signupService.signUp(this.data);
+    if (this.signupService.loginFailed()) {
+      this.errors = this.signupService.errorMsg();
+      this.signUpFailed = "hi";
+    } else {
+      localStorage.setItem('password', this.data.password)
+      localStorage.setItem('user', "" + this.data.idStudent)
+    }
   }
 
-  postData(data: SignUp) {
-    return this.http.post<SignUp>('http://localhost:3500/signup', data).subscribe(
-      res => {
-      console.log('POST Request is successful ', res);
-      },
-      error  => {
-      console.log('Error', error);
-      });
-    }
+  showGroup() {
+    return this.simpleForm.value.group;
+  }
+
+  enterPartner() {
+    if (this.simpleForm.value.details == 'group-2')
+      return true
+    else
+      return false
+  }
 
 
 }

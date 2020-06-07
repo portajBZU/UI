@@ -11,10 +11,14 @@ import { Router } from '@angular/router';
 })
 export class PartnersComponent implements OnInit {
   public student: Students ={name: '', groupDetails: '', studentId: 0};
-
+  public studentIds =[];
+  public partnersIds =[];
+  public filtered =[];
   public studentsList;
   constructor(public studentService: StudentsService, public router: Router) {
     this.getStudents();
+    console.log(JSON.parse(localStorage.getItem('user')));
+    console.log(JSON.parse(localStorage.getItem('password')));
    }
   addStudentForm = new FormGroup({
     details: new FormControl(),
@@ -39,6 +43,14 @@ export class PartnersComponent implements OnInit {
   getStudents() {
     this.studentService.getStudents().subscribe(data => {
       this.studentsList = data;
+      //console.log(this.studentsList)
+      for(let i=0; i<this.studentsList.length; i++) {
+        this.studentIds.push(this.studentsList[i].idStudent);
+        this.partnersIds.push(this.studentsList[i].partnerId)
+       // this.filtered = this.studentIds.filter(f => this.partnersIds.includes(f));
+      }
+      console.log(this.filtered);
+      console.log(this.studentIds)
     });
   }
   addForm() {
