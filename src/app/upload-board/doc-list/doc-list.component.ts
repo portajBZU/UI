@@ -17,6 +17,9 @@ export class DocListComponent implements OnInit {
   ];
   constructor() { }
 
+  open() {
+
+  }
   ngOnInit() {
 
   }

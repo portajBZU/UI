@@ -38,6 +38,7 @@ import { UploadComponent } from './upload-board/upload/upload.component';
 import { SearchComponent } from './archive/search/search.component';
 import { StudentsService } from '../services/students.service';
 import { CarComponent } from './car/car.component';
+import { GroupsComponent } from './partners/groups/groups.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { CarComponent } from './car/car.component';
     DocListComponent,
     UploadComponent,
     SearchComponent,
-    CarComponent
+    CarComponent,
+    GroupsComponent
   ],
   imports: [
     AngularFontAwesomeModule,

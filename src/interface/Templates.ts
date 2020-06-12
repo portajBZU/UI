@@ -1,4 +1,5 @@
 export interface Templates {
-    templateTitle:String,
-    templateType:String
+  _id?: String,
+  templateTitle: String,
+  templateType: String
 }

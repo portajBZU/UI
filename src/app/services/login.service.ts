@@ -15,7 +15,7 @@ export class LoginService {
   logIn(user) {
     return this.http.post('http://localhost:3500/login', user).subscribe(res => {
       if (res) {
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
         this.getToken(res);
       }
     }, error => {

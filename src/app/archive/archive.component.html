@@ -7,72 +7,29 @@
           <fa name="search"></fa>
         </div>
       </div>
-      <!--
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-        <label class="form-check-label" for="exampleRadios1">
-          Search By Year
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-        <label class="form-check-label" for="exampleRadios2">
-          Second default radio
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
-        <label class="form-check-label" for="exampleRadios3">
-          Disabled radio
-        </label>
-      </div>
-      -->
     </form>
   </div>
 
 </div>
 
   <div class="row ml-0 mr-0">
-    <!--
-    <div class="col-2 pr-0" style="margin-top: 7rem;">
-      <table class="table table-hover card side-shadow" style="background-color: #f7fcfa;">
-        <tbody>
-          <tr *ngFor='let category of categories' (click)="filterCategories(category.id)">
-            <th scope="row">{{category.name}} ({{category.count}})</th>
-        </tbody>
-      </table>
-    </div>
-    -->
     <div class="col">
       <div class="row justify-content-around mt-5" style="margin-right: auto; margin-left:auto; ">
 
-        <div class="col " style="margin-top: 2rem;" *ngFor="let report of report">
-      <!--    <div class="card card-shadow " style="width: 12rem;">
-            <div class="m-2" style="background-color: grey; opacity: 0.8;">
-              <img class="card-img" style="padding: 0.4rem 0.2rem 0 0.2rem;"
-                src="../../../assets/templates cover.JPG" alt="templates cover">
-            </div>
-            <div class="card-body" style="padding: 0;">
-              <h5 class="text-center card-title" style="font-size: medium;">{{report.archiveTitle}}</h5>
-              <p class="text-center card-title" style="font-size: medium;">{{report.archiveType}}</p>
-              <div class="mb-2" style="margin-left: 18%;">
-                <a (click)="download(report._id)" class="btn"
-                  style="background-color:#54816a; color: white; padding: 0.2rem 2rem;font-size: small;">Download</a>
-              </div>
-            </div>
-          </div> -->
-          <div class="card mb-3 card-shadow " style="max-width: 540px;">
+        <div class="col-4 " style="margin-top: 2rem;" *ngFor="let report of report ">
+          <div class="card mb-3 card-shadow " style="max-width: 700px; height: 80%">
             <div class="row no-gutters">
-              <div class="col-md-4">
-                <img class="card-img" src="../../../assets/templates cover.JPG" alt="templates cover">
+              <div class="col-md-6">
+                <img class="card-img ml-1 " style="height: max-content; top: 50%; margin-top: 10% " src="../../../assets/templates cover.JPG" alt="templates cover">
               </div>
-              <div class="col-md-8">
-                <div class="card-body">
+              <div class="col-md-6 pr-4">
+                <div class="card-body" style="padding: 0.8rem!important;">
                   <h5 class="text-center card-title" style="font-size: medium;">{{report.archiveTitle}}</h5>
-                  <p class="text-center card-title" style="font-size: medium;">{{report.archiveType}}</p>
-                  <div class="mb-2" style="margin-left: 18%;">
+                  <p class="text-center mb-0 card-title" style="font-size: small;">Type: {{report.archiveType}}</p>
+                  <p class="text-center " style="font-size: small;">{{report.supervisodBy}}</p>
+                  <div class="mb-4">
                     <a (click)="download(report._id)" class="btn"
-                       style="background-color:#54816a; color: white; padding: 0.2rem 2rem;font-size: small;">Download</a>
+                       style="background-color:#54816a; color: white; padding: 0.4rem 3rem;font-size: small;">Download</a>
                   </div>
                 </div>
               </div>

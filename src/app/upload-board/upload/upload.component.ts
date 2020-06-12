@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Archives} from "../../../interface/archives";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {OperationsService} from "../../../services/operations.service";
+import {SupervisorsService} from "../../../services/supervisors.service";
 
 @Component({
   selector: 'app-upload',
@@ -16,9 +17,11 @@ export class UploadComponent implements OnInit {
     {name: 'Requirements', done: 1, date: '15/11/2019'},
     {name: 'Diagrams', done: 1, date: '2020/05/15'},
     {name: 'Poster', done: 1, date: '2020/06/22'},
-    {name: 'Report Summary', done: 1, date: '05/01/2020'},
-    {name: 'Report', done: 2, date: '2020/06/08'},
+    {name: 'Report Summary', done: 2, date: '05/01/2020'},
+    {name: 'Report', done: 0, date: '2020/06/08'},
   ];
+
+  uploadForm: FormGroup;
   public successful;
   public doc;
   public daysLeft;
@@ -28,8 +31,18 @@ export class UploadComponent implements OnInit {
     file: new FormControl()
   });
 
-  constructor(public http: HttpClient, private uploadService: OperationsService) { }
-  public archive: Archives ={ archiveTitle:'', archiveType:'', supervisodBy: '',_id:'', currentDate: null};
+  supervisorsList;
+
+  constructor(public fb: FormBuilder, public http: HttpClient, private uploadService: OperationsService, public supervisors: SupervisorsService) {
+    this.supervisors.getSupervisors().subscribe(
+      res => {
+        this.supervisorsList = res;
+      }
+    )
+  }
+
+  public archive: Archives = {archiveTitle: '', archiveType: '', supervisodBy: '', _id: '', currentDate: null};
+
   ngOnInit() {
     for (let i = 0; i < this.docs.length; i++) {
       if (this.docs[i].done === 2) {
@@ -37,30 +50,36 @@ export class UploadComponent implements OnInit {
         this.daysLeft = this.calculateDiff(this.docs[i].date) * -1;
       }
     }
+    this.uploadForm = new FormGroup({
+      type: new FormControl('', [Validators.required]),
+      title: new FormControl('', [Validators.required]),
+      supervisor: new FormControl(0, [Validators.required])
+    });
   }
+
   calculateDiff(dateSent) {
     const currentDate = new Date();
     dateSent = new Date(dateSent);
     return Math.floor((Date.UTC(currentDate.getFullYear(),
       currentDate.getMonth(), currentDate.getDate()) - Date.UTC(dateSent.getFullYear(),
-      dateSent.getMonth(), dateSent.getDate()) ) / (1000 * 60 * 60 * 24));
-}
+      dateSent.getMonth(), dateSent.getDate())) / (1000 * 60 * 60 * 24));
+  }
 
-upload() {
+  upload() {
     let res;
-    if(this.doc.name == 'Report'){
+    if (this.doc.name == 'Report') {
       res = this.uploadReport();
     } else {
-     res = this.uploadService.uploadDocument(this.e);
+      res = this.uploadService.uploadDocument(this.e);
     }
-  console.log(res)
-    if(res){
+    console.log(res)
+    if (res) {
       this.successful = true;
-      this.doc.done =1;
+      this.doc.done = 1;
     }
-}
+  }
 
-  handle(e){
+  handle(e) {
     //console.log(this.uploadFile.value.file);
     console.log(e)
 
@@ -69,15 +88,17 @@ upload() {
     this.archive.archiveType = 'AI';
     this.e = e.target.files[0];
   }
+
   uploadReport() {
+    console.log(this.uploadForm)
     const formData: FormData = new FormData();
     let file = <File>this.e;
     formData.append('graduationDocument', file, file.name);
-    formData.append('archiveType', <string>this.archive.archiveType)
-    formData.append('archiveTitle', <string>this.archive.archiveTitle)
-    formData.append('supervisodBy', <string>this.archive.supervisodBy)
+    formData.append('archiveType', this.uploadForm.value.type)
+    formData.append('archiveTitle', this.uploadForm.value.title)
+    formData.append('supervisodBy', this.uploadForm.value.supervisor)
     let data = {formData: formData, body: this.archive}
-    return this.http.post<Archives>('http://localhost:3500/uploadArchive',formData).subscribe(res => {
+    return this.http.post<Archives>('http://localhost:3500/uploadArchive', formData).subscribe(res => {
       console.log(res);
       return res;
     })

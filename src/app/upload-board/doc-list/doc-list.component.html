@@ -1,11 +1,14 @@
 <table class="table table-hover card side-shadow" style="background-color: #f7fcfa; width: fit-content;">
     <tbody style="width:max-content;">
-      <tr *ngFor='let doc of docs' [ngClass]="(doc.done != 2)?'bg-color':'nothing'">
+      <tr *ngFor='let doc of docs' (click)="open()">
         <td>{{doc.name}}</td>
         <td style="padding-left: 3rem;">  <fa name="file"></fa></td>
         </tr>
     </tbody>
   </table>
+<div class="row mr-0 ml-0 mt-2"  style="flex-direction: row">
+    <button class="btn add-button"><span style="font-size: 1.2rem; ">+</span>Add Document List</button>
+  </div>
 <!--
 <button type="button" class="btn btn-success">Add Document</button>
 -->

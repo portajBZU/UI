@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Templates} from '../interface/Templates';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {SaveAS} from "file-saver"
 
@@ -35,11 +34,22 @@ export class OperationsService {
     })
   }
 
-  uploadTemplate(e){
+  uploadTemplate(template,e){
     let formData = new FormData();
     let file = <File>e;
+    console.log(file)
     formData.append('templateDocument',file)
-    return this.http.post<any>('http://localhost:3500/uploadTemplate', formData).subscribe(res => {
+    formData.append('templateType', template.templateType)
+    formData.append('templateTitle', template.templateTitle);
+    let headers = new HttpHeaders()
+      .set('Accept', 'text/csv');
+
+    return this.http.post<any>('http://localhost:3500/uploadTemplate', formData,{
+      headers: headers
+    }).subscribe(res => {
+      if(res) {
+        window.location.reload();
+      }
       console.log(res);
     })
   }

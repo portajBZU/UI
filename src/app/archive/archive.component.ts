@@ -39,7 +39,6 @@ export class ArchiveComponent implements OnInit {
   simpleForm: FormGroup;
   constructor(public http: HttpClient, private downloadService: OperationsService ,
               public fb: FormBuilder, private searchService: SearchService) {
-    this.getArchive()
     this.simpleForm = fb.group({
       search: ['', Validators.required],
     });
@@ -49,12 +48,14 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit() {
     this.selectedReports = this.reports;
+    this.updateSearchList(true)
   }
 
   getArchive() {
     return this.http.get<Archives>('http://localhost:3500/uploadArchive/get').subscribe(data => {
+
       this.report = this.report.concat(data);
-      console.log(this.report);
+//      console.log(this.report);
     });
   }
 
@@ -96,11 +97,22 @@ export class ArchiveComponent implements OnInit {
   }
   search() {
     this.key= this.simpleForm.value.search;
-    let reports = this.searchService.search(this.key)
-    console.log(reports)
+    let reports = this.searchService.search(this.key).subscribe(res => {
+      this.updateSearchList(false, res);
+      console.log(res)
+      return res;
+    });
+    return reports;
 
-    //   return this.http.get('http://localhost:3500/search/'+ this.key).subscribe(res =>
-    //console.log(res));
+  }
+  updateSearchList(check,res?){
+    if(check == false){
+      this.report = res;
+      console.log(this.report)
+    } else if(check) {
+      console.log(check)
+      this.getArchive();
+    }
   }
 
 
